@@ -1,0 +1,41 @@
+.my-bookings {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.my-bookings h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.booking-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.booking-item {
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease;
+}
+
+.booking-item:hover {
+  transform: translateY(-2px);
+}
+
+.booking-item span {
+  display: inline-block;
+  margin-top: 0.4rem;
+  color: var(--text-muted);
+}

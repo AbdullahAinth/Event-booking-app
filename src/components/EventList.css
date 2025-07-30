@@ -1,0 +1,44 @@
+.event-list {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .event-list h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .events {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .event-card {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s;
+  }
+  
+  .event-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .details-button {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--accent);
+    color: var(--button-text);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .details-button:hover {
+    background-color: var(--accent-hover);
+  }
+  

@@ -1,0 +1,38 @@
+/* src/components/Toast.css */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #323232;
+    color: white;
+    padding: 14px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 9999;
+    animation: fadeInUp 0.3s ease;
+    font-size: 15px;
+  }
+  
+  .toast.success {
+    background-color: #2ecc71;
+  }
+  
+  .toast.error {
+    background-color: #e74c3c;
+  }
+  
+  .toast.info {
+    background-color: #3498db;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
