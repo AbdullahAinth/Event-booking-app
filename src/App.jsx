@@ -1,43 +1,46 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "./context/ThemeContext";
+import React, { useState } from "react";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { ToastProvider } from "./contexts/ToastContext";
 import Navbar from "./components/Navbar";
 import EventList from "./components/EventList";
 import EventDetail from "./components/EventDetail";
-import Payment from "./components/Payment";
 import BookingConfirmation from "./components/BookingConfirmation";
 import MyBookings from "./components/MyBookings";
+import PaymentScreen from "./components/PaymentScreen";
+import CategoryFilter from "./components/CategoryFilter";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 const App = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
   return (
     <ThemeProvider>
-      <Router>
-        <div className="app-container">
+      <ToastProvider>
+        <Router>
           <Navbar />
-          <main className="main-content">
+          <div className="main-content">
             <Routes>
-              {/* Home: List of events */}
-              <Route path="/" element={<EventList />} />
-
-              {/* Event detail page */}
-              <Route path="/event/:id" element={<EventDetail />} />
-
-              {/* Razorpay checkout */}
-              <Route path="/checkout" element={<Payment />} />
-
-              {/* Post-payment confirmation */}
               <Route
-                path="/booking-confirmation"
-                element={<BookingConfirmation />}
+                path="/"
+                element={
+                  <>
+                    <CategoryFilter
+                      selectedCategory={selectedCategory}
+                      setSelectedCategory={setSelectedCategory}
+                    />
+                    <EventList selectedCategory={selectedCategory} />
+                  </>
+                }
               />
-
-              {/* View booked events */}
+              <Route path="/event/:id" element={<EventDetail />} />
+              <Route path="/payment-screen" element={<PaymentScreen />} />
+              <Route path="/confirmation" element={<BookingConfirmation />} />
               <Route path="/my-bookings" element={<MyBookings />} />
             </Routes>
-          </main>
-        </div>
-      </Router>
+          </div>
+        </Router>
+      </ToastProvider>
     </ThemeProvider>
   );
 };

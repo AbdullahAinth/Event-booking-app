@@ -1,14 +1,112 @@
-/* index.css */
+/* Define global CSS variables for themes */
 :root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --nav-bg: #f1f1f1;
-  --toggle-bg: #dddddd;
+  --bg-color-light: #f9f9f9;
+  --text-color-light: #222222;
+  --card-bg-light: #ffffff;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --border-color-light: #e0e0e0;
+  --accent-light: #007bff;
+  --accent-hover-light: #0056b3;
+  --button-text-light: #ffffff;
+  --nav-bg-light: #ffffff;
+  --nav-text-light: #222222;
+  --filter-btn-bg-light: #f0f0f0;
+  --filter-btn-text-light: #222222;
+  --filter-btn-active-bg-light: #007bff;
+  --filter-btn-active-text-light: #ffffff;
 }
 
+/* Dark theme variables */
 body.dark {
-  --bg-color: #121212;
-  --text-color: #f0f0f0;
-  --nav-bg: #1e1e1e;
-  --toggle-bg: #333333;
+  --bg-color: #1a202c;
+  --text-color: #e2e8f0;
+  --card-bg: #2d3748;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --border-color: #4a5568;
+  --accent: #6366f1;
+  --accent-hover: #4f46e5;
+  --button-text: #ffffff;
+  --nav-bg: #1a202c;
+  --nav-text: #e2e8f0;
+  --filter-btn-bg: #4a5568;
+  --filter-btn-text: #e2e8f0;
+  --filter-btn-active-bg: #6366f1;
+  --filter-btn-active-text: #ffffff;
+}
+
+/* Default (light) theme variables */
+body {
+  --bg-color: var(--bg-color-light);
+  --text-color: var(--text-color-light);
+  --card-bg: var(--card-bg-light);
+  --shadow: var(--shadow-light);
+  --border-color: var(--border-color-light);
+  --accent: var(--accent-light);
+  --accent-hover: var(--accent-hover-light);
+  --button-text: var(--button-text-light);
+  --nav-bg: var(--nav-bg-light);
+  --nav-text: var(--nav-text-light);
+  --filter-btn-bg: var(--filter-btn-bg-light);
+  --filter-btn-text: var(--filter-btn-text-light);
+  --filter-btn-active-bg: var(--filter-btn-active-bg-light);
+  --filter-btn-active-text: var(--filter-btn-active-text-light);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+a { text-decoration: none; }
+.main-content {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+.card-base {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+.button-primary {
+  background-color: var(--accent);
+  color: var(--button-text);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.button-primary:hover {
+  background-color: var(--accent-hover);
+}
+
+/* --- Toast CSS --- */
+.toast-container-wrapper {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.toast {
+  padding: 12px 16px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  animation: fadeIn 0.3s ease-in;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.toast.success { background-color: #4caf50; }
+.toast.error { background-color: #f44336; }
+.toast.info { background-color: #17a2b8; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

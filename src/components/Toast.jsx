@@ -5,12 +5,17 @@ const Toast = ({ message, onClose, type = "info" }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 3000); // auto-dismiss after 3 seconds
+    }, 3000); // Auto-dismiss after 3 seconds
     return () => clearTimeout(timer);
   }, [onClose]);
 
   return (
-    <div className={`toast ${type}`}>
+    <div
+      className={`toast ${type}`}
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
       {message}
     </div>
   );

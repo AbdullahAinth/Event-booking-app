@@ -1,34 +1,33 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import "./BookingConfirmation.css";
+import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import "../App.css";
 
 const BookingConfirmation = () => {
   const location = useLocation();
-  const navigate = useNavigate();
-  const booking = location.state?.booking;
-
-  if (!booking) {
-    return (
-      <div className="confirmation-container">
-        <p>No booking found.</p>
-        <button onClick={() => navigate("/")}>Go to Events</button>
-      </div>
-    );
-  }
-
+  const bookingData = location.state?.bookingData;
+  const mockBookingData = {
+    bookingId: 'MOCK-12345',
+    eventName: 'Mock Event',
+    eventDate: '2025-12-25',
+    quantity: 2,
+    totalPrice: 100.00
+  };
+  const finalBookingData = bookingData || mockBookingData;
   return (
-    <div className="confirmation-container">
-      <h1>Booking Confirmed!</h1>
-      <p>
-        <strong>Event:</strong> {booking.event.title}
-      </p>
-      <p>
-        <strong>Price Paid:</strong> ₹{booking.event.price}
-      </p>
-      <p>
-        <strong>Payment ID:</strong> {booking.razorpayPaymentId}
-      </p>
-      <button onClick={() => navigate("/")}>Back to Events</button>
+    <div className="booking-confirmation">
+      <div className="confirmation-card">
+        <h2 className="confirmation-header">Booking Confirmed! 🎉</h2>
+        <p className="confirmation-message">Your booking for <strong>{finalBookingData.eventName}</strong> has been successfully processed.</p>
+        <div className="booking-details-summary">
+          <p><strong>Booking ID:</strong> {finalBookingData.bookingId}</p>
+          <p><strong>Event Date:</strong> {finalBookingData.eventDate}</p>
+          <p><strong>Tickets:</strong> {finalBookingData.quantity}</p>
+          <p><strong>Total Price:</strong> ${finalBookingData.totalPrice.toFixed(2)}</p>
+        </div>
+        <Link to="/" className="home-button">
+          Back to Home
+        </Link>
+      </div>
     </div>
   );
 };

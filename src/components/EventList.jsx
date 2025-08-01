@@ -1,37 +1,39 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./EventList.css";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { eventsData } from '../data/events';
+import "../App.css";
 
-const events = [
-  {
-    id: 1,
-    title: "Music Concert",
-    description: "An evening of live music performances by top artists.",
-  },
-  {
-    id: 2,
-    title: "Tech Conference",
-    description: "Explore the latest in technology and innovation.",
-  },
-  {
-    id: 3,
-    title: "Art Workshop",
-    description: "A hands-on workshop for budding artists.",
-  },
-];
-
-const EventList = () => {
+const EventList = ({ selectedCategory }) => {
+  const [filteredEvents, setFilteredEvents] = useState([]);
+  useEffect(() => {
+    const filtered = selectedCategory === 'All'
+      ? eventsData
+      : eventsData.filter((event) => event.category === selectedCategory);
+    setFilteredEvents(filtered);
+  }, [selectedCategory]);
   return (
-    <div className="event-list">
-      <h1>Upcoming Events</h1>
-      <div className="events">
-        {events.map((event) => (
+    <div className="event-list-container">
+      <h2 className="event-list-header">Upcoming Events</h2>
+      <div className="event-list">
+        {filteredEvents.map((event) => (
           <div key={event.id} className="event-card">
-            <h2>{event.title}</h2>
-            <p>{event.description}</p>
-            <Link to={`/event/${event.id}`} className="details-button">
-              View Details
-            </Link>
+            <img
+              src={event.image}
+              alt={event.title}
+              className="event-image"
+              onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/400x250'; }}
+            />
+            <div className="event-details">
+              <h3 className="event-title">{event.title}</h3>
+              <p className="event-category">{event.category}</p>
+              <p className="event-date">
+                {event.date} at {event.time}
+              </p>
+              <p className="event-price">${event.price.toFixed(2)}</p>
+              <Link to={`/event/${event.id}`} className="details-button">
+                View Details
+              </Link>
+            </div>
           </div>
         ))}
       </div>

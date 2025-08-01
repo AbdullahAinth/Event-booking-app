@@ -1,36 +1,99 @@
-.confirmation {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
-  text-align: center;
+/* src/pages/BookingConfirmation.css */
+.confirmation-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - var(--navbar-height, 80px)); /* Adjust for navbar height */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.confirmation-card {
+  /* Apply base card styles */
   background-color: var(--card-bg);
   color: var(--text-color);
   border-radius: 1rem;
   box-shadow: var(--shadow);
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
 }
 
-.confirmation h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+.confirmation-card h2 {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color); /* Ensure text color is from theme */
 }
 
-.confirmation p {
+.confirmation-card .message {
   font-size: 1.1rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
 }
 
-.back-button {
-  margin-top: 1.5rem;
-  display: inline-block;
-  padding: 0.7rem 1.4rem;
+.booking-summary {
+  background-color: var(--border-color); /* Use a subtle background for summary */
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.booking-summary h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.booking-summary p {
+  margin: 0.6rem 0;
+  font-size: 1rem;
+}
+
+.booking-summary strong {
+  color: var(--text-color); /* Ensure strong text is visible */
+}
+
+.booking-id-text, .timestamp-text {
+  font-size: 0.9rem;
+  color: var(--text-color); /* Use text-color for these */
+  opacity: 0.8;
+  margin-top: 1rem;
+}
+
+.back-btn {
+  /* Apply base button styles */
   background-color: var(--accent);
   color: var(--button-text);
-  text-decoration: none;
-  font-weight: bold;
+  border: none;
   border-radius: 0.5rem;
+  cursor: pointer;
   transition: background-color 0.2s ease;
+
+  padding: 0.8rem 1.8rem;
+  font-size: 1.1rem;
+  margin: 0 0.5rem;
+  min-width: 150px;
 }
 
-.back-button:hover {
+.back-btn:hover {
   background-color: var(--accent-hover);
+}
+
+.back-btn.secondary {
+  background-color: var(--card-bg); /* Use card background for secondary */
+  color: var(--accent); /* Use accent color for text */
+  border: 1px solid var(--accent);
+}
+
+.back-btn.secondary:hover {
+  background-color: var(--accent);
+  color: var(--button-text);
 }

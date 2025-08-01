@@ -1,28 +1,32 @@
 /* src/components/Toast.css */
 .toast {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background-color: #323232;
-    color: white;
+    background-color: var(--card-bg); /* Use card background for toast */
+    color: var(--text-color); /* Use text color for toast text */
     padding: 14px 24px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: var(--shadow); /* Use global shadow */
     z-index: 9999;
     animation: fadeInUp 0.3s ease;
     font-size: 15px;
+    border: 1px solid var(--border-color); /* Add a subtle border */
   }
   
   .toast.success {
-    background-color: #2ecc71;
+    background-color: #28a745; /* Green for success */
+    color: white;
+    border-color: #28a745;
   }
   
   .toast.error {
-    background-color: #e74c3c;
+    background-color: #dc3545; /* Red for error */
+    color: white;
+    border-color: #dc3545;
   }
   
   .toast.info {
-    background-color: #3498db;
+    background-color: #17a2b8; /* Cyan for info */
+    color: white;
+    border-color: #17a2b8;
   }
   
   @keyframes fadeInUp {
@@ -35,4 +39,3 @@
       transform: translateY(0);
     }
   }
-  

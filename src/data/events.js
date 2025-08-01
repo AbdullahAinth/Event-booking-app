@@ -1,25 +1,62 @@
-const events = [
+export const eventsData = [
     {
-      id: "1",
-      name: "React Conference 2025",
-      date: "2025-08-15",
-      time: "10:00 AM",
-      location: "Bangalore, India",
-      description: "A full-day event on React, hooks, concurrent mode, and more.",
-      price: 499,
-      image: "https://via.placeholder.com/600x300.png?text=React+Conf+2025"
+      id: 1,
+      title: 'Music Festival',
+      description: 'An annual music festival featuring local bands and international headliners.',
+      date: '2025-08-01',
+      time: '19:00',
+      price: 50,
+      image: 'https://placehold.co/400x250/FCA311/000000?text=Music+Festival',
+      category: 'Music',
     },
     {
-      id: "2",
-      name: "AI & ML Summit",
-      date: "2025-09-10",
-      time: "9:30 AM",
-      location: "Hyderabad, India",
-      description: "Explore advancements in artificial intelligence and machine learning.",
-      price: 799,
-      image: "https://via.placeholder.com/600x300.png?text=AI+%26+ML+Summit"
-    }
+      id: 2,
+      title: 'Tech Conference 2025',
+      description: 'A two-day conference on the latest trends in technology and software development.',
+      date: '2025-09-15',
+      time: '09:00',
+      price: 250,
+      image: 'https://placehold.co/400x250/E5E5E5/000000?text=Tech+Conference',
+      category: 'Conference',
+    },
+    {
+      id: 3,
+      title: 'Art Exhibition: Modern Masters',
+      description: 'Explore a curated collection of contemporary art from around the world.',
+      date: '2025-10-20',
+      time: '11:00',
+      price: 25,
+      image: 'https://placehold.co/400x250/14213D/FFFFFF?text=Art+Exhibition',
+      category: 'Exhibition',
+    },
+    {
+      id: 4,
+      title: 'Stand-up Comedy Night',
+      description: 'Laugh out loud with some of the best comedians in the city.',
+      date: '2025-11-05',
+      time: '20:30',
+      price: 20,
+      image: 'https://placehold.co/400x250/FCA311/000000?text=Comedy+Night',
+      category: 'Entertainment',
+    },
+    {
+      id: 5,
+      title: 'Food & Wine Expo',
+      description: 'Taste gourmet food and exquisite wines from various regions.',
+      date: '2025-12-10',
+      time: '18:00',
+      price: 75,
+      image: 'https://placehold.co/400x250/E5E5E5/000000?text=Food+&+Wine',
+      category: 'Food',
+    },
+    {
+      id: 6,
+      title: 'Jazz in the Park',
+      description: 'An evening of live jazz music under the stars in the city park.',
+      date: '2026-01-22',
+      time: '19:30',
+      price: 35,
+      image: 'https://placehold.co/400x250/14213D/FFFFFF?text=Jazz+in+the+Park',
+      category: 'Music',
+    },
   ];
-  
-  export default events;
-  

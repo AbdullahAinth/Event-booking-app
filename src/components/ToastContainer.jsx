@@ -1,6 +1,6 @@
 // src/components/ToastContainer.jsx
 import React from "react";
-import { useToast } from "../context/ToastContext";
+import { useToast } from "../contexts/ToastContext";
 import "../styles/ToastContainer.css"; // (Create this later)
 
 const ToastContainer = () => {

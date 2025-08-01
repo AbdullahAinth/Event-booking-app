@@ -1,44 +1,107 @@
-.event-list {
+.event-list-container {
     padding: 2rem;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+  }
+  
+  .event-list-container.dark {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  .event-list-header {
     text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #14213d;
   }
   
-  .event-list h1 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+  .event-list-container.dark .event-list-header {
+    color: #fca311;
   }
   
-  .events {
+  .event-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
   }
   
   .event-card {
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    padding: 1.5rem;
-    border-radius: 1rem;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .event-list-container.dark .event-card {
+    background-color: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   }
   
   .event-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .event-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .event-details {
+    padding: 1.5rem;
+  }
+  
+  .event-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #14213d;
+  }
+  
+  .event-list-container.dark .event-title {
+    color: #fca311;
+  }
+  
+  .event-category {
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .event-list-container.dark .event-category {
+    color: #bbb;
+  }
+  
+  .event-date,
+  .event-price {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+  }
+  
+  .event-list-container.dark .event-date,
+  .event-list-container.dark .event-price {
+    color: #aaa;
   }
   
   .details-button {
     display: inline-block;
-    margin-top: 1rem;
-    padding: 0.6rem 1.2rem;
-    background-color: var(--accent);
-    color: var(--button-text);
+    background-color: #fca311;
+    color: #14213d;
     text-decoration: none;
-    border-radius: 0.5rem;
-    transition: background-color 0.2s ease;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
   }
   
   .details-button:hover {
-    background-color: var(--accent-hover);
+    background-color: #fb8b24;
   }
   

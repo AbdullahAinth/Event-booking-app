@@ -1,87 +1,93 @@
-/* Root variables for theme support */
-:root {
-    --navbar-bg-light: #ffffff;
-    --navbar-text-light: #000000;
-    --navbar-bg-dark: #1e1e2f;
-    --navbar-text-dark: #ffffff;
-  
-    --button-bg-light: #f0f0f0;
-    --button-text-light: #000000;
-    --button-bg-dark: #333;
-    --button-text-dark: #ffffff;
-  }
-  
-  /* Theme-specific variables */
-  .light {
-    --navbar-bg: var(--navbar-bg-light);
-    --navbar-text: var(--navbar-text-light);
-    --button-bg: var(--button-bg-light);
-    --button-text: var(--button-text-light);
-  }
-  
-  .dark {
-    --navbar-bg: var(--navbar-bg-dark);
-    --navbar-text: var(--navbar-text-dark);
-    --button-bg: var(--button-bg-dark);
-    --button-text: var(--button-text-dark);
-  }
-  
-  .navbar {
+/* src/components/Navbar.css */
+.navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--navbar-bg);
-    color: var(--navbar-text);
     padding: 1rem 2rem;
-    border-bottom: 1px solid #ccc;
+    background-color: var(--nav-bg); /* Use nav background variable */
+    color: var(--nav-text); /* Use nav text variable */
+    box-shadow: var(--shadow); /* Use global shadow variable */
     transition: background-color 0.3s ease, color 0.3s ease;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 1rem; /* Gap between items when wrapped */
   }
   
-  .navbar-left .logo {
-    font-size: 1.5rem;
+  .navbar-brand {
+    font-size: 1.8rem; /* Slightly larger brand text */
     font-weight: bold;
-    color: var(--navbar-text);
+    color: var(--accent); /* Use accent color for brand */
     text-decoration: none;
   }
   
-  .navbar-right {
+  .navbar-center-links { /* New style for center links */
     display: flex;
-    align-items: center;
-    gap: 1.5rem;
+    gap: 2rem; /* Space between Home and My Bookings */
+    flex-grow: 1; /* Allow it to take available space */
+    justify-content: center; /* Center the links */
   }
   
-  /* Link styles */
   .nav-link {
-    text-decoration: none;
-    color: var(--navbar-text);
+    color: var(--nav-text); /* Use nav text color */
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s, color 0.2s;
     font-weight: 500;
-    transition: color 0.2s ease;
   }
   
   .nav-link:hover {
-    color: #007bff;
+    background-color: var(--filter-btn-bg); /* Use filter button background for hover */
+    color: var(--filter-btn-text);
   }
   
-  .active-link {
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 0.2rem;
-    color: #007bff;
+  /* Active link style if you add it later */
+  /* .nav-link.active { ... } */
+  
+  
+  .navbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap; /* Allow controls to wrap */
   }
   
   /* Theme toggle button */
   .theme-toggle {
-    background-color: var(--button-bg);
-    color: var(--button-text);
-    border: none;
-    font-size: 1.2rem;
+    background-color: var(--filter-btn-bg); /* Use filter button background */
+    color: var(--filter-btn-text); /* Use filter button text color */
+    border: 1px solid var(--border-color);
+    font-size: 1rem; /* Adjust font size */
     cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 5px;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
     transition: background-color 0.2s ease, color 0.2s ease;
+    display: flex; /* For icon and text alignment */
+    align-items: center;
+    gap: 0.5rem;
   }
   
   .theme-toggle:hover {
-    background-color: #007bff;
-    color: #fff;
+    background-color: var(--filter-btn-active-bg);
+    color: var(--filter-btn-active-text);
   }
   
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+    }
+  
+    .navbar-center-links {
+      width: 100%;
+      justify-content: flex-start; /* Align left on small screens */
+      margin-top: 0.5rem;
+    }
+  
+    .navbar-controls {
+      width: 100%;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+  }

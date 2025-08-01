@@ -1,69 +1,43 @@
-import React from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { openRazorpay } from "../utils/razorpay";
-import "./EventDetail.css";
-
-const events = [
-  {
-    id: 1,
-    title: "Music Concert",
-    description: "An evening of live music performances by top artists.",
-    price: 499,
-  },
-  {
-    id: 2,
-    title: "Tech Conference",
-    description: "Explore the latest in technology and innovation.",
-    price: 999,
-  },
-  {
-    id: 3,
-    title: "Art Workshop",
-    description: "A hands-on workshop for budding artists.",
-    price: 299,
-  },
-];
+import React, { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { eventsData } from '../data/events';
+import "../App.css";
 
 const EventDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const event = events.find((e) => e.id === parseInt(id));
+  const [quantity, setQuantity] = useState(1);
+  const event = eventsData.find((e) => e.id === parseInt(id));
 
-  const handleBuyNow = async () => {
-    openRazorpay({
-      amount: event.price,
-      event,
-      onSuccess: (response) => {
-        const bookingData = {
-          event,
-          razorpayPaymentId: response.razorpay_payment_id,
-          timestamp: new Date().toISOString(),
-        };
-
-        // Store booking in localStorage
-        const stored = localStorage.getItem("bookings");
-        const bookings = stored ? JSON.parse(stored) : [];
-        bookings.push(bookingData);
-        localStorage.setItem("bookings", JSON.stringify(bookings));
-
-        // Navigate to confirmation page
-        navigate("/confirmation", {
-          state: { booking: bookingData },
-        });
-      },
-    });
+  if (!event) {
+    return <div className="event-detail-container">Event not found!</div>;
+  }
+  const handleProceedToPayment = () => {
+    navigate('/payment-screen', { state: { event, quantity } });
   };
-
-  if (!event) return <p>Event not found.</p>;
-
   return (
-    <div className="event-detail">
-      <h1>{event.title}</h1>
-      <p>{event.description}</p>
-      <p className="price">₹{event.price}</p>
-      <button onClick={handleBuyNow} className="buy-button">
-        Buy Now
-      </button>
+    <div className="event-detail-container">
+      <div className="event-detail-card">
+        <img src={event.image} alt={event.title} className="event-detail-image" />
+        <div className="event-detail-content">
+          <h2 className="event-detail-title">{event.title}</h2>
+          <p className="event-detail-category">{event.category}</p>
+          <p className="event-detail-description">{event.description}</p>
+          <div className="event-detail-info">
+            <p><strong>Date:</strong> {event.date}</p>
+            <p><strong>Time:</strong> {event.time}</p>
+            <p><strong>Price:</strong> ${event.price.toFixed(2)}</p>
+          </div>
+          <div className="quantity-selector">
+            <button onClick={() => setQuantity(Math.max(1, quantity - 1))}>-</button>
+            <span>{quantity}</span>
+            <button onClick={() => setQuantity(quantity + 1)}>+</button>
+          </div>
+          <button className="book-btn" onClick={handleProceedToPayment}>
+            Book Now (${(event.price * quantity).toFixed(2)})
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
