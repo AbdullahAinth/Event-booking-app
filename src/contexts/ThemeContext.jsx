@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useState, useEffect, useCallback, useContext } from 'react';
 
 export const ThemeContext = createContext();
 
@@ -20,3 +20,6 @@ export const ThemeProvider = ({ children }) => {
     </ThemeContext.Provider>
   );
 };
+
+// ✅ NEW HOOK: useTheme
+export const useTheme = () => useContext(ThemeContext);

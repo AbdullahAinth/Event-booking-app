@@ -1,23 +1,22 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ThemeContext } from '../contexts/ThemeContext';
-import "../App.css";
+import './Navbar.css';
 
 const Navbar = () => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
   return (
-    <nav className={`navbar ${theme}`}>
-      <div className="navbar-brand">
-        <Link to="/" className="logo">🎟️ Event Booking</Link>
+    <nav className="navbar">
+      <div className="navbar-left">
+        <Link to="/" className="nav-brand">
+          EventGo
+        </Link>
       </div>
-      <div className="navbar-center-links">
-        <Link to="/" className="nav-link">Home</Link>
-        <Link to="/my-bookings" className="nav-link">My Bookings</Link>
-      </div>
-      <div className="navbar-controls">
-        <button className="theme-toggle" onClick={toggleTheme}>
-          {theme === "dark" ? "🌞 Light Mode" : "🌙 Dark Mode"}
-        </button>
+      <div className="navbar-right">
+        <Link to="/" className="nav-link">
+          Events
+        </Link>
+        <Link to="/my-bookings" className="nav-link">
+          My Bookings
+        </Link>
       </div>
     </nav>
   );

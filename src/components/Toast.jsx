@@ -1,22 +1,52 @@
-import React, { useEffect } from "react";
-import "./Toast.css";
+import React, { useEffect } from 'react';
+import './Toast.css';
 
-const Toast = ({ message, onClose, type = "info" }) => {
+const Toast = ({ toast, onClose }) => {
+  const { id, message, type = 'info', timeout = 3000 } = toast;
+
   useEffect(() => {
-    const timer = setTimeout(() => {
-      onClose();
-    }, 3000); // Auto-dismiss after 3 seconds
-    return () => clearTimeout(timer);
-  }, [onClose]);
+    if (timeout) {
+      const timer = setTimeout(() => {
+        onClose(id);
+      }, timeout);
+      return () => clearTimeout(timer);
+    }
+  }, [id, timeout, onClose]);
+
+  const handleClose = () => {
+    onClose(id);
+  };
+
+  const getIcon = () => {
+    switch (type) {
+      case 'success':
+        return '✅';
+      case 'error':
+        return '❌';
+      case 'warning':
+        return '⚠️';
+      case 'info':
+      default:
+        return 'ℹ️';
+    }
+  };
 
   return (
     <div
-      className={`toast ${type}`}
+      className={`toast ${type} toast-show`}
       role="alert"
-      aria-live="assertive"
       aria-atomic="true"
+      aria-live="polite"
     >
-      {message}
+      <span className="toast-icon">{getIcon()}</span>
+      <div className="toast-message">{String(message)}</div>
+      <button
+        className="toast-close"
+        onClick={handleClose}
+        aria-label="Close"
+      >
+        &times;
+      </button>
     </div>
   );
 };

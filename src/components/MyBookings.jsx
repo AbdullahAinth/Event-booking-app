@@ -1,47 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { eventsData } from '../data/events';
-import "../App.css";
+import { getBookings } from '../utils/localStorage';
+import './MyBookings.css';
 
 const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    try {
-      const storedBookings = JSON.parse(localStorage.getItem('bookings')) || [];
-      // Filter out any malformed bookings before setting the state
-      const validBookings = storedBookings.filter(b => b && b.event && typeof b.quantity === 'number' && typeof b.totalPrice === 'number');
-      setBookings(validBookings);
-    } catch (error) {
-      console.error('Failed to parse bookings from localStorage', error);
-      setBookings([]);
-    }
+    // Fetch bookings from localStorage when the component mounts
+    const fetchedBookings = getBookings();
+    setBookings(fetchedBookings || []); // Ensure it's an array even if localStorage is empty
   }, []);
 
   return (
     <div className="my-bookings-container">
       <h2 className="my-bookings-header">My Bookings</h2>
-      {bookings.length === 0 ? (
-        <p className="no-bookings-message">No bookings yet. Go book an event!</p>
-      ) : (
-        <div className="bookings-list">
+      {bookings.length > 0 ? (
+        <ul className="bookings-list">
           {bookings.map((booking) => (
-            <div key={booking.bookingId} className="booking-card">
-              <img
-                src={booking.event?.image}
-                alt={booking.event?.title}
-                className="booking-image"
-                onError={(e) => { e.target.onerror = null; e.target.src = 'https://via.placeholder.com/150'; }}
-              />
+            <li key={booking.id} className="booking-item">
               <div className="booking-details">
-                <h3>{booking.event?.title}</h3>
-                <p><strong>ID:</strong> {booking.bookingId}</p>
-                <p><strong>Date:</strong> {booking.bookingDate ? new Date(booking.bookingDate).toLocaleDateString() : 'N/A'}</p>
-                <p><strong>Tickets:</strong> {booking.quantity || 0}</p>
-                <p><strong>Total Price:</strong> ${booking.totalPrice ? booking.totalPrice.toFixed(2) : '0.00'}</p>
+                <h3>{booking.event.title}</h3>
+                <p>Date: {booking.event.date}</p>
+                <p>Location: {booking.event.location}</p>
+                <p>Tickets: {booking.numTickets}</p>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
+      ) : (
+        <p className="no-bookings-message">No bookings yet. Go book an event!</p>
       )}
     </div>
   );

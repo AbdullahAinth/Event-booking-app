@@ -1,5 +1,5 @@
 // src/components/PaymentMethod.jsx
-import React, { useState } from "react";
+import React from "react";
 import "./PaymentMethod.css";
 
 const paymentOptions = [
@@ -9,19 +9,7 @@ const paymentOptions = [
   { id: "card", label: "Credit/Debit Card", icon: "💳" },
 ];
 
-const PaymentMethod = ({ onProceed }) => {
-  const [selectedMethod, setSelectedMethod] = useState(null);
-
-  const handleSelect = (id) => {
-    setSelectedMethod(id);
-  };
-
-  const handleProceed = () => {
-    if (!selectedMethod) return alert("Please select a payment method");
-    // Simulate storing method or pass to Razorpay logic
-    onProceed(selectedMethod);
-  };
-
+const PaymentMethod = ({ selectedMethod, onSelect }) => {
   return (
     <div className="payment-method-container">
       <h2>Select Payment Method</h2>
@@ -30,16 +18,13 @@ const PaymentMethod = ({ onProceed }) => {
           <li
             key={option.id}
             className={selectedMethod === option.id ? "selected" : ""}
-            onClick={() => handleSelect(option.id)}
+            onClick={() => onSelect(option.id)}
           >
             <span className="icon">{option.icon}</span>
             <span>{option.label}</span>
           </li>
         ))}
       </ul>
-      <button className="proceed-btn" onClick={handleProceed}>
-        Proceed to Pay
-      </button>
     </div>
   );
 };
